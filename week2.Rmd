@@ -1,0 +1,122 @@
+---
+title: "week2"
+author: "chaitanya"
+date: "January 27, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r Sequences of Numbers}
+
+x <- 11:30 ## sequence of  positive numbers 
+ print(x)
+ x<- -100 : -200 ## sequence of negative numbers 
+  print(x)
+  
+
+```
+
+```{r Vectors}
+
+ a <- c(1, 6,3,4)   ## numeric
+ b<- c(TRUE, FALSE) ## logica
+ c<- c(T, F)         ## logica
+ d <- c("a", "b", "c") ## character
+ e <- 1:100         ## integer
+ f <- c(2+5i, 3+8i) ## complex
+  a[c(2)] ## second element in numeric
+  e[c(50)] ##  50 th elementt in integers
+  d[c(3)]  ##  3 rd elements in character
+  
+   x <- vector("numeric", length = 10)
+   x
+    x <- vector("character", length = 10)
+    x
+     x <- vector("complex", length = 10)
+     x
+     a=20;b=50
+     x=a>b 
+x## if a is greater than b or mot
+x=a+b
+x
+x=a*b
+x
+x=a/b
+
+x
+
+x <- c("TEam", 1 ,2 ,3 ,4 ,"total","records") ##quater scores 
+     x
+     x <- c("omaha",16,16,8,30,70,"6-11,1-4")
+     x
+     x <- c("western",22,18,22,16,78,"7-12,3-3")
+     x
+  
+     
+  
+  
+```
+
+```{r Missing Values}
+x <- c(12, 32, NA, 110, 32)
+is.na(x)
+is.nan(x)
+x <- c(12, 32, NA, NaN, 32)
+is.na(x)
+is.nan(x)
+x <- c(12, 32, NA, 110, 32,NA,7,NA,8)
+sum(is.na(x))## total number of NA 
+which(is.na(x))## location of NA in the data
+na.omit(x)## omiting na 
+mean(x, na.rm = TRUE)##calculating mean not including na
+x[is.na(x)] <- 0 #3replacing na with zero
+x
+
+
+
+```
+
+```{r Subsetting Vectors}
+d <- c(1, 20, -2,50,100,70,80)
+d[1]##firstelement in data
+d[3:7]##sub set printing elements 3 to 7
+d[d>30]## greater than 30 
+x<-d>1## checking the values  greater than 1 
+x
+d[x]## the values greater than 1
+d[c(4,1)]##subsetting 4 th and 1st element
+d[order(d)]##ordering the elements
+d[-c(2,3)]##removing 2,3 elements and creating sub set with remaing elements
+(y <- setNames(d, letters[1:7]))##assiging characters to elements
+y[c("d", "c", "a")]## geting values using assign characters
+
+
+```
+
+```{r Matrices and Data Frame}
+ m <- matrix(1:6,nrow = 3, ncol = 6) 
+m
+dim(m)
+attributes(m)
+m <- 1:21## creating matrix with vectors by adding the dimension attribute
+m
+dim(m) <- c(3, 7)
+m
+x <- 3:5 ## creating matrix by binding
+y <- 12:14
+cbind(x, y)
+rbind(x, y)
+x<- data.frame(chaitu = 10:13, report = c(T, T, F, F))
+x
+nrow(x)
+ncol(x)
+x[1,"chaitu"] <- 20; x ##modifing data frame
+rbind(x,list(16,T))## adding contents row wise
+cbind(x,state=c("w","i","u","k"))## adding contents colum wise
+                
+
+```
+
