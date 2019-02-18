@@ -1,0 +1,43 @@
+---
+title: "week4"
+author: "chaitanya"
+date: "February 12, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+#install.packages("lubridate")
+library(rvest)
+library(plyr)
+library(lubridate)
+
+htmllink <- read_html("https://en.wikipedia.org/wiki/Samsung_Galaxy")
+
+mydata <- data.frame ( html_table(htmllink, header = NA, trim = TRUE, fill = TRUE, dec = "")[[3]])
+mydata
+
+mydata$present<-Sys.Date()
+mydata
+
+ mydata$Year <- as.Date(as.character(mydata$Year), "%Y")
+ mydata
+
+ mydata$diff_in_days = difftime(mydata[[11]], mydata[[3]], units = "days")
+
+
+mydata$diff_in_years <- as.double(mydata$diff_in_days)/365 # absolute years
+mydata$diff_in_years <- as.integer(mydata$diff_in_years)
+mydata
+ 
+
+
+
+
+
+
+
+```
+
