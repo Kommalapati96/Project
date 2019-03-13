@@ -1,0 +1,41 @@
+---
+title: "week7"
+author: "chaitanya"
+date: "March 12, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+#install.packages("ggplot2")
+library(rvest)
+library(plyr)
+library(lubridate)
+library(ggplot2)
+
+htmllink <- read_html("http://worldpopulationreview.com/countries/india-population/")
+
+mydata <- data.frame ( html_table(htmllink, header = TRUE, trim = TRUE, fill = TRUE, dec = "")[[7]])
+mydata
+
+
+
+
+
+```
+
+```{r}
+mydata$Density..km². <- as.integer(mydata$Density..km².)
+mydata
+
+ggplot(mydata, aes(x=Year, y=Density..km².)) +
+    geom_point(shape=1, color = "blue")      # Use hollow circles
+
+ggplot(mydata, aes(x=Year, y=Density..km².)) +
+   geom_point(shape=1) +     geom_smooth(method=lm)   
+                             
+
+```
+
