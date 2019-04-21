@@ -1,6 +1,6 @@
 ---
 title: "project"
-author: "chaitanya"
+author: "chaitanya kommalapat sai panguluri " 
 date: "March 31, 2019"
 output: html_document
 ---
@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
-
+# we have taken this documents based on drugs this document contain more than 500 rows and 3 numerical and nomianal
 chaitu <-
   read.csv("chaitu1.csv")
 print(chaitu)
