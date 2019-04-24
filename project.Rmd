@@ -9,10 +9,96 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+question:-how the un employement rate varies in newyork from 1990 to 2019 with respective labor force and area.
+source:-https://catalog.data.gov/dataset/local-area-unemployment-statistics-beginning-1976
+
 ```{r}
-# we have taken this documents based on drugs this document contain more than 500 rows and 3 numerical and nomianal
-chaitu <-
-  read.csv("chaitu1.csv")
-print(chaitu)
+
+NewYork  <-
+  read.csv("Local_Area_Unemployment_Statistics__Beginning_1976.csv")
+print(NewYork )
+
+```
+The sign of a regression coefficient tells you whether there is a positive or negative correlation between each independent variable the dependent variable. A positive coefficient indicates that as the value of the independent variable increases, the mean of the dependent variable also tends to increase. A negative coefficient suggests that as the independent variable increases, the dependent variable tends to decrease.
+
+```{r}
+library(rvest)
+library(plyr)
+library(lubridate)
+library(ggplot2)
+library(cluster)
+
+fit<-lm(formula = Unemployment.Rate~Year,data = NewYork)
+fit
+
+ a<-summary(fit)
+ a
+
+NewYork$predicted<-predict(fit)
+NewYork
+NewYork$residuals<-residuals(fit)
+NewYork
+
+
+ggplot(NewYork, aes(x = Year, y = residuals)) + geom_point()+ 
+   geom_segment(aes(xend = Year, yend = 0), alpha = .2) + geom_hline(
+    yintercept=0)
 ```
 
+The sign of a regression coefficient tells you whether there is a positive or negative correlation between each independent variable the dependent variable. in above data year having a positive coefficient indicates that as the value of the year (independent variable increases), the mean of the  Unemployment.Rate (dependent variable )also tends to increase.
+```{r}
+library(rvest)
+library(plyr)
+library(lubridate)
+library(ggplot2)
+library(cluster)
+
+fit2<-lm(formula = Unemployment.Rate~Year+Labor.Force,data = NewYork)
+fit2
+
+ b<-summary(fit2)
+ b
+
+NewYork$predicted<-predict(fit2)
+NewYork
+NewYork$residuals<-residuals(fit2)
+NewYork
+
+
+ggplot(NewYork, aes(x = Year, y = residuals)) + geom_point()+
+   geom_segment(aes(xend = Year, yend = 0), alpha = .2) + geom_hline(
+    yintercept=0)
+
+```
+
+The sign of a regression coefficient tells you whether there is a positive or negative correlation between each independent variable the dependent variable. in above data year,Labor.Force having a positive coefficient indicates that as the value of the year ,Labor.Force(independent variable increases), the mean of the  Unemployment.Rate (dependent variable )also tends to increase.
+```{r}
+library(rvest)
+library(plyr)
+library(lubridate)
+library(ggplot2)
+library(cluster)
+
+fit3<-lm(formula = Unemployment.Rate~Year+Labor.Force+ factor(Area),data = NewYork)
+fit3
+
+ c<-summary(fit3)
+ c
+
+NewYork$predicted<-predict(fit3)
+NewYork
+NewYork$residuals<-residuals(fit3)
+NewYork
+
+
+ggplot(NewYork, aes(x = Year, y = residuals)) + geom_point()+
+   geom_segment(aes(xend = Year, yend = 0), alpha = .2) + geom_hline(
+    yintercept=0)
+```
+  Generally, you choose the models that have higher adjusted and predicted R-squared values. These statistics are designed to avoid a key problem with regular R-squared—it increases every time you add a predictor and can trick you into specifying an overly complex model.# from the above three models the  third model is the best model because it has highest Adjusted R-squared value.
+
+The adjusted R squared increases only if the new term improves the model more than would be expected by chance and it can also decrease with poor quality predictors.
+The predicted R-squared is a form of cross-validation and it can also decrease. Cross-validation determines how well your model generalizes to other data sets by partitioning your dataThe sign of a regression coefficient tells you .
+# from the above three models the  third model is the best model because it has highest Adjusted R-squared value.
+
+whether there is a positive or negative correlation between each independent variable the dependent variable. in above data year,Labor.Force,factor(Area), having a positive coefficient indicates that as the value of the year ,Labor.Force,factor(Area)(independent variable increases), the mean of the  Unemployment.Rate (dependent variable )also tends to increase.
