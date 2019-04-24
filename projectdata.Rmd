@@ -1,0 +1,23 @@
+---
+title: "project data"
+author: "chaitanya and sai panguluri"
+date: "April 23, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+source:-https://catalog.data.gov/dataset/local-area-unemployment-statistics-beginning-1976
+question:-how the un employement rate varies in newyork from 1990 to 2019 with respective labor force and area.
+```{r}
+library(rvest)
+library(plyr)
+library(lubridate)
+library(ggplot2)
+library(cluster)
+a  <-
+  read.csv("Local_Area_Unemployment_Statistics__Beginning_1976.csv")
+print(a )
+
+```
