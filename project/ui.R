@@ -29,7 +29,9 @@ shinyUI(fluidPage(
     mainPanel(
       plotOutput("plot1"),
       h3("Predicted unemployement from Model1:"),
-      textOutput("pred1")
+      textOutput("pred1"),
+      h3(" data  :"),
+      textOutput("data")
     )
   )
 ))
