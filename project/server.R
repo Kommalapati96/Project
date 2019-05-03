@@ -33,15 +33,15 @@ shinyServer(function(input, output) {
     yearInput  <-  input$SliderYear
     
   })
-  output$plot1  <-   renderPlot(
+  output$plot1  <-   renderPlot({
     
     
     ggplot(NewYork, aes(x = Year, y = residuals)) + geom_point()+ 
       geom_segment(aes(xend = Year, yend = 0), alpha = .2) + geom_hline(
         yintercept=0) + geom_point(aes(x = year() , y = 0), color = 'blue')
     
-  )
-  output$data  <-   renderPlot(
+  })
+  output$data  <-   renderText({
     
    "My source : https://catalog.data.gov/dataset/local-area-unemployment-statistics-beginning-1976
 My question: how the un employement rate varies in newyork state from 1976 to 2019 with respective labor force and area.
@@ -72,7 +72,7 @@ My question: how the un employement rate varies in newyork state from 1976 to 20
    By using Adjusted R-squared I selected model 3 as best model and I created a shiny app . I created a slider on the x-axis moving that slider on the selected year we get predicted  un employmentrate  value . 
    "
     
-  )
+  })
   
   output$pred1  <-  renderText({
     model1pred()
